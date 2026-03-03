@@ -15,7 +15,6 @@ import { getBuildingClassDescriptionText } from "@/lib/building-class";
 import { getLandUseDescriptionText } from "@/lib/land-use";
 import {
 	ArrowLeft,
-	Box,
 	MapPin,
 	Send,
 	Home,
@@ -33,7 +32,6 @@ import { config } from "@/lib/config";
 import { toast } from "sonner";
 import FemaFloodMap, { type FemaFloodMapHandle } from "@/components/fema-flood-map";
 import TransitZoneMap, { type TransitZoneMapHandle } from "@/components/transit-zone-map";
-import ReportMassingSection from "@/components/report-massing-section";
 
 function getStatusColor(status: string) {
 	switch (status) {
@@ -1375,17 +1373,6 @@ export function ReportViewContent({
 									</div>
 								</CardContent>
 							</Card>
-						)}
-
-						{/* 3D Massing Visualization — inputs below 3D, Save persists to report; no report-derived defaults */}
-						{report?.IdReport && report?.ReportType !== "assemblage" && (
-							<ReportMassingSection
-								reportId={report.IdReport}
-								readOnly={isPublic}
-								initialMassingOverrides={
-									isPublic ? (reportData as { massingOverrides?: MassingOverrides | null }).massingOverrides : undefined
-								}
-							/>
 						)}
 
 						{/* Zoning Constraints Section */}

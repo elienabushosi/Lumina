@@ -77,10 +77,10 @@ function SidebarHeaderContent({
 function getPageTitle(pathname: string): string {
 	if (pathname === "/home" || pathname === "/") {
 		return "Home";
-	} else if (pathname === "/search-address") {
-		return "Single Parcel";
+	} else if (pathname === "/main-page-1") {
+		return "Main Page 1";
 	} else if (pathname === "/reports") {
-		return "All Live Reports";
+		return "Main Page 2";
 	} else if (pathname === "/team") {
 		return "Team";
 	} else if (pathname === "/demo-report-list") {
@@ -89,8 +89,6 @@ function getPageTitle(pathname: string): string {
 		return "Report Details";
 	} else if (pathname === "/settings") {
 		return "Settings";
-	} else if (pathname === "/massing-sandbox") {
-		return "Massing Sandbox";
 	} else if (pathname.includes("/assemblagereportview")) {
 		return "Assemblage Report";
 	} else if (pathname.includes("/viewreport")) {
@@ -218,27 +216,42 @@ export default function WorkspaceLayout({
 								</SidebarMenuItem>
 								<SidebarMenuItem>
 									<SidebarMenuButton
-										tooltip="Single Parcel"
+										tooltip="Main Page 1"
 										isActive={
-											pathname === "/search-address"
+											pathname === "/main-page-1"
 										}
 										asChild
 									>
-										<Link href="/search-address">
+										<Link href="/main-page-1">
 											<SquareDashed className="size-4" />
-											<span>Single Parcel</span>
+											<span>Main Page 1</span>
 										</Link>
 									</SidebarMenuButton>
 								</SidebarMenuItem>
 								<SidebarMenuItem>
 									<SidebarMenuButton
-										tooltip="All Live Reports"
+										tooltip="Main Page 2"
 										isActive={pathname === "/reports"}
 										asChild
 									>
 										<Link href="/reports">
 											<FileText className="size-4" />
-											<span>All Live Reports</span>
+											<span>Main Page 2</span>
+										</Link>
+									</SidebarMenuButton>
+								</SidebarMenuItem>
+								<SidebarMenuItem>
+									<SidebarMenuButton
+										tooltip="Items"
+										isActive={
+											pathname === "/demo-report-list" ||
+											pathname.startsWith("/demo-report")
+										}
+										asChild
+									>
+										<Link href="/demo-report-list">
+											<FileCheck className="size-4" />
+											<span>Items</span>
 										</Link>
 									</SidebarMenuButton>
 								</SidebarMenuItem>
@@ -266,37 +279,6 @@ export default function WorkspaceLayout({
 										</Link>
 									</SidebarMenuButton>
 								</SidebarMenuItem>
-								<SidebarMenuItem>
-									<SidebarMenuButton
-										tooltip="Items"
-										isActive={
-											pathname === "/demo-report-list" ||
-											pathname.startsWith("/demo-report")
-										}
-										asChild
-									>
-										<Link href="/demo-report-list">
-											<FileCheck className="size-4" />
-											<span>Items</span>
-										</Link>
-									</SidebarMenuButton>
-								</SidebarMenuItem>
-								{process.env.NODE_ENV === "development" && (
-									<SidebarMenuItem>
-										<SidebarMenuButton
-											tooltip="Massing Sandbox (dev only)"
-											isActive={
-												pathname === "/massing-sandbox"
-											}
-											asChild
-										>
-											<Link href="/massing-sandbox">
-												<Box className="size-4" />
-												<span>Massing Sandbox</span>
-											</Link>
-										</SidebarMenuButton>
-									</SidebarMenuItem>
-								)}
 							</SidebarMenu>
 						</SidebarGroupContent>
 					</SidebarGroup>

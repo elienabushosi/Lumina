@@ -15,7 +15,7 @@ export default function ViewReportPublicPage() {
 	const router = useRouter();
 	const reportId = params.id as string;
 
-	const [reportData, setReportData] = useState<(ReportWithSources & { massingOverrides?: unknown }) | null>(null);
+	const [reportData, setReportData] = useState<ReportWithSources | null>(null);
 	const [isLoading, setIsLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
 

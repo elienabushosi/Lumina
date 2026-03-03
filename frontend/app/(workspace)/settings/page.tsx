@@ -858,16 +858,16 @@ export default function SettingsPage() {
 															<CardContent className="space-y-4">
 																{/* Features List */}
 																<div className="space-y-3">
-																	{[
-																		"Unlimited reports",
-																		"Residential NYC addresses(only)",
-																		"Single Parcel",
-																		"Assemblage",
-																		"Zoning Restriction Insights",
-																		"High Requirement Data",
-																		"Zone Lot Coverage Data",
-																		"Yard Requirements"
-																	].map((feature) => (
+																{[
+																	"Unlimited reports",
+																	"Residential NYC addresses(only)",
+																	"Main Page 1",
+																	"Assemblage",
+																	"Zoning Restriction Insights",
+																	"High Requirement Data",
+																	"Zone Lot Coverage Data",
+																	"Yard Requirements"
+																].map((feature) => (
 																		<div key={feature} className="flex items-center gap-3">
 																			<div className="h-6 w-6 rounded-full flex items-center justify-center shrink-0" style={{ backgroundColor: '#6f9f6b' }}>
 																				<Check className="h-4 w-4 text-white" />

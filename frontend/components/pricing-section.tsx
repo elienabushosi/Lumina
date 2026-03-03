@@ -353,7 +353,7 @@ export default function PricingSection() {
 								{[
 									"Unlimited reports",
 									"Residential NYC addresses(only)",
-									"Single Parcel",
+									"Main Page 1",
 									"Assemblage",
 									"Zoning Restriction Insights",
 									"High Requirement Data",

@@ -1,11 +1,11 @@
 "use client";
 
-export default function ReportsPage() {
+export default function MainPage2() {
 	return (
 		<div className="p-8">
 			<div className="max-w-5xl mx-auto space-y-4">
 				<h1 className="text-2xl font-semibold text-[#37322F]">
-					All Live Reports (placeholder)
+					Main Page 2 (placeholder)
 				</h1>
 				<p className="text-sm text-[#605A57]">
 					This page is a scaffold for listing reports in your own application.

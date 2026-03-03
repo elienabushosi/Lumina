@@ -138,7 +138,7 @@ export async function getReportWithSources(
  */
 export async function getReportWithSourcesPublic(
 	reportId: string
-): Promise<ReportWithSources & { massingOverrides?: MassingOverrides | null }> {
+): Promise<ReportWithSources> {
 	const response = await fetch(
 		`${config.apiUrl}/api/reports/public/${reportId}`,
 		{ method: "GET", headers: { "Content-Type": "application/json" } }
@@ -153,59 +153,7 @@ export async function getReportWithSourcesPublic(
 		client: data.client || null,
 		creator: data.creator || null,
 		sources: data.sources || [],
-		massingOverrides: data.massingOverrides ?? null,
 	};
 }
 
-/** Massing overrides shape stored per report (same fields as sandbox + inputsPanelHidden) */
-export interface MassingOverrides {
-	lotLengthFt?: number;
-	lotWidthFt?: number;
-	frontWallFt?: number;
-	backWallFt?: number;
-	leftWallFt?: number;
-	rightWallFt?: number;
-	baseHeightFt?: number;
-	buildingHeightFt?: number;
-	setbackStartFt?: number;
-	frontSetbackFt?: number;
-	maxHeightFt?: number;
-	showMaxHeightCage?: boolean;
-	xAlign?: "left" | "center" | "right";
-	zAlign?: "front" | "center" | "back";
-	inputsPanelHidden?: boolean;
-}
-
-export async function getReportMassing(reportId: string): Promise<MassingOverrides | null> {
-	const token = localStorage.getItem("auth_token");
-	if (!token) throw new Error("No authentication token found");
-	const response = await fetch(`${config.apiUrl}/api/reports/${reportId}/massing`, {
-		method: "GET",
-		headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
-	});
-	if (!response.ok) {
-		const err = await response.json();
-		throw new Error(err.message || "Failed to fetch report massing");
-	}
-	const data = await response.json();
-	return data.massingOverrides ?? null;
-}
-
-export async function patchReportMassing(
-	reportId: string,
-	massingOverrides: MassingOverrides
-): Promise<MassingOverrides> {
-	const token = localStorage.getItem("auth_token");
-	if (!token) throw new Error("No authentication token found");
-	const response = await fetch(`${config.apiUrl}/api/reports/${reportId}/massing`, {
-		method: "PATCH",
-		headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
-		body: JSON.stringify({ massingOverrides }),
-	});
-	if (!response.ok) {
-		const err = await response.json();
-		throw new Error(err.message || "Failed to save report massing");
-	}
-	const data = await response.json();
-	return data.massingOverrides;
-}
+// Massing-related endpoints have been removed from the frontend template.

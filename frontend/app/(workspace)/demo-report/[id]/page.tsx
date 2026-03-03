@@ -293,7 +293,7 @@ export default function DemoReportPage() {
 					</CardContent>
 				</Card>
 
-				{/* Zoning Classification */}
+				{/* Section A */}
 				<Card>
 					<CardHeader>
 						<div className="flex items-center gap-2">
@@ -320,7 +320,7 @@ export default function DemoReportPage() {
 							<div className="grid grid-cols-2 md:grid-cols-4 gap-4">
 								<div>
 									<p className="text-sm text-[#605A57] mb-1">
-										Floor Area Ratio (FAR)
+										Metric 1
 									</p>
 									<p className="font-medium text-[#37322F]">
 										{propertyData.zoning.floorAreaRatio}
@@ -328,7 +328,7 @@ export default function DemoReportPage() {
 								</div>
 								<div>
 									<p className="text-sm text-[#605A57] mb-1">
-										Max Building Height
+										Metric 2
 									</p>
 									<p className="font-medium text-[#37322F]">
 										{
@@ -339,7 +339,7 @@ export default function DemoReportPage() {
 								</div>
 								<div className="md:col-span-2">
 									<p className="text-sm text-[#605A57] mb-1">
-										Required Yards
+										Metric 3
 									</p>
 									<p className="font-medium text-[#37322F]">
 										{propertyData.zoning.requiredYards}
@@ -483,7 +483,7 @@ export default function DemoReportPage() {
 						<div className="space-y-6">
 							<div>
 								<p className="text-sm font-medium text-[#605A57] mb-1">
-									Label 1
+									Metric 1
 								</p>
 								<p className="text-base text-[#37322F] font-semibold">
 									{propertyData.zoningDetails.maximumFAR}
@@ -497,7 +497,7 @@ export default function DemoReportPage() {
 
 							<div>
 								<p className="text-sm font-medium text-[#605A57] mb-1">
-									Label 2
+									Metric 2
 								</p>
 								<p className="text-base text-[#37322F] font-semibold">
 									{
@@ -515,7 +515,7 @@ export default function DemoReportPage() {
 							<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 								<div>
 									<p className="text-sm font-medium text-[#605A57] mb-1">
-										Label 3
+										Metric 3
 									</p>
 									<p className="text-base text-[#37322F] font-semibold">
 										{
@@ -529,7 +529,7 @@ export default function DemoReportPage() {
 								</div>
 								<div>
 									<p className="text-sm font-medium text-[#605A57] mb-1">
-										Label 4
+										Metric 4
 									</p>
 									<p className="text-base text-[#37322F] font-semibold">
 										{
@@ -543,7 +543,7 @@ export default function DemoReportPage() {
 								</div>
 								<div>
 									<p className="text-sm font-medium text-[#605A57] mb-1">
-										Label 5
+										Metric 5
 									</p>
 									<p className="text-base text-[#37322F] font-semibold">
 										{
@@ -561,12 +561,12 @@ export default function DemoReportPage() {
 
 							<div>
 								<p className="text-sm font-medium text-[#605A57] mb-3">
-									Label 6
+									Metric 6
 								</p>
 								<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 									<div>
 										<p className="text-xs text-[#605A57] mb-1">
-											Sub-label 1
+											Sub-metric 1
 										</p>
 										<p className="text-base text-[#37322F] font-semibold">
 											{
@@ -577,7 +577,7 @@ export default function DemoReportPage() {
 									</div>
 									<div>
 										<p className="text-xs text-[#605A57] mb-1">
-											Sub-label 2
+											Sub-metric 2
 										</p>
 										<p className="text-base text-[#37322F] font-semibold">
 											{
@@ -588,7 +588,7 @@ export default function DemoReportPage() {
 									</div>
 									<div>
 										<p className="text-xs text-[#605A57] mb-1">
-											Sub-label 3
+											Sub-metric 3
 										</p>
 										<p className="text-base text-[#37322F] font-semibold">
 											{
@@ -607,7 +607,7 @@ export default function DemoReportPage() {
 
 							<div>
 								<p className="text-sm font-medium text-[#605A57] mb-1">
-									Label 7
+									Metric 7
 								</p>
 								<p className="text-base text-[#37322F] font-semibold">
 									{
@@ -624,7 +624,7 @@ export default function DemoReportPage() {
 
 							<div>
 								<p className="text-sm font-medium text-[#605A57] mb-1">
-									Label 8
+									Metric 8
 								</p>
 								<p className="text-base text-[#37322F] font-semibold">
 									{
