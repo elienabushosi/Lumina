@@ -1,0 +1,340 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
+import {
+	getAuthToken,
+	verifyToken,
+	removeAuthToken,
+	getCurrentUser,
+} from "@/lib/auth";
+import {
+	Sidebar,
+	SidebarContent,
+	SidebarGroup,
+	SidebarGroupContent,
+	SidebarHeader,
+	SidebarFooter,
+	SidebarMenu,
+	SidebarMenuButton,
+	SidebarMenuItem,
+	SidebarProvider,
+	SidebarInset,
+	SidebarTrigger,
+	useSidebar,
+} from "@/components/ui/sidebar";
+import {
+	Home,
+	Search,
+	FileText,
+	Settings,
+	LogOut,
+	User,
+	FileCheck,
+	Users,
+	SquareStack,
+	SquareDashed,
+	Box,
+} from "lucide-react";
+
+function SidebarHeaderContent({
+	organizationName,
+}: {
+	organizationName: string | null;
+}) {
+	const { state } = useSidebar();
+	const isCollapsed = state === "collapsed";
+
+	return (
+		<div className="flex flex-col items-center gap-3 p-4">
+			{/* Logo */}
+			<div
+				className={`flex items-center justify-center ${
+					isCollapsed ? "w-10" : "w-full max-w-[140px]"
+				}`}
+			>
+				<img
+					src="/logos/clermontworkspacelogo.png"
+					alt="Clermont"
+					className={`object-contain ${
+						isCollapsed ? "h-8" : "h-auto w-full"
+					}`}
+				/>
+			</div>
+			{/* Company name - hidden when collapsed */}
+			{!isCollapsed && (
+				<div className="text-center">
+					<h2 className="text-lg font-semibold text-[#37322F]">
+						{organizationName || "Organization"}
+					</h2>
+				</div>
+			)}
+		</div>
+	);
+}
+
+function getPageTitle(pathname: string): string {
+	if (pathname === "/home" || pathname === "/") {
+		return "Home";
+	} else if (pathname === "/search-address") {
+		return "Single Parcel";
+	} else if (pathname === "/reports") {
+		return "All Live Reports";
+	} else if (pathname === "/land-assemblage") {
+		return "Land Assemblage";
+	} else if (pathname === "/team") {
+		return "Team";
+	} else if (pathname === "/demo-report-list") {
+		return "Sample Reports";
+	} else if (pathname.startsWith("/demo-report")) {
+		return "Report Details";
+	} else if (pathname === "/settings") {
+		return "Settings";
+	} else if (pathname === "/massing-sandbox") {
+		return "Massing Sandbox";
+	} else if (pathname.includes("/assemblagereportview")) {
+		return "Assemblage Report";
+	} else if (pathname.includes("/viewreport")) {
+		return "Report";
+	}
+	return "Home";
+}
+
+export default function WorkspaceLayout({
+	children,
+}: {
+	children: React.ReactNode;
+}) {
+	const pathname = usePathname();
+	const router = useRouter();
+	const [isAuthenticated, setIsAuthenticated] = useState(false);
+	const [isChecking, setIsChecking] = useState(true);
+	const [userData, setUserData] = useState<{
+		user: {
+			IdUser: string;
+			Name: string;
+			Email: string;
+			Role: string;
+			IdOrganization: string | null;
+		};
+		organization: {
+			IdOrganization: string;
+			Name: string;
+			Type: string | null;
+		} | null;
+	} | null>(null);
+	const pageTitle = getPageTitle(pathname);
+
+	useEffect(() => {
+		const checkAuth = async () => {
+			const token = getAuthToken();
+
+			if (!token) {
+				router.push("/login");
+				return;
+			}
+
+			// Verify token with backend and get user data
+			const isValid = await verifyToken(token);
+
+			if (!isValid) {
+				// Remove invalid token
+				localStorage.removeItem("auth_token");
+				router.push("/login");
+				return;
+			}
+
+			// Fetch user data with organization
+			const userInfo = await getCurrentUser();
+			if (userInfo) {
+				setUserData(userInfo);
+			}
+
+			setIsAuthenticated(true);
+			setIsChecking(false);
+		};
+
+		checkAuth();
+	}, [router]);
+
+	// Show loading state while checking authentication
+	if (isChecking || !isAuthenticated) {
+		return (
+			<div className="w-full min-h-screen bg-[#F7F5F3] flex items-center justify-center">
+				<div className="text-[#37322F]">Loading...</div>
+			</div>
+		);
+	}
+
+	return (
+		<SidebarProvider>
+			<Sidebar collapsible="icon" data-sidebar="sidebar">
+				<SidebarHeader>
+					<SidebarHeaderContent
+						organizationName={userData?.organization?.Name || null}
+					/>
+				</SidebarHeader>
+				<SidebarContent>
+					<SidebarGroup>
+						<SidebarGroupContent>
+							<SidebarMenu>
+								<SidebarMenuItem>
+									<SidebarMenuButton
+										tooltip="Home"
+										isActive={
+											pathname === "/home" ||
+											pathname === "/"
+										}
+										asChild
+									>
+										<Link href="/home">
+											<Home className="size-4" />
+											<span>Home</span>
+										</Link>
+									</SidebarMenuButton>
+								</SidebarMenuItem>
+								<SidebarMenuItem>
+									<SidebarMenuButton
+										tooltip="Single Parcel"
+										isActive={
+											pathname === "/search-address"
+										}
+										asChild
+									>
+									<Link href="/search-address">
+										<SquareDashed className="size-4" />
+										<span>Single Parcel</span>
+									</Link>
+									</SidebarMenuButton>
+								</SidebarMenuItem>
+								<SidebarMenuItem>
+									<SidebarMenuButton
+										tooltip="Land Assemblage"
+										isActive={pathname === "/land-assemblage"}
+										asChild
+									>
+										<Link href="/land-assemblage">
+											<SquareStack className="size-4" />
+											<span>Land Assemblage</span>
+										</Link>
+									</SidebarMenuButton>
+								</SidebarMenuItem>
+								<SidebarMenuItem>
+									<SidebarMenuButton
+										tooltip="All Live Reports"
+										isActive={pathname === "/reports"}
+										asChild
+									>
+										<Link href="/reports">
+											<FileText className="size-4" />
+											<span>All Live Reports</span>
+										</Link>
+									</SidebarMenuButton>
+								</SidebarMenuItem>
+								<SidebarMenuItem>
+									<SidebarMenuButton
+										tooltip="Team"
+										isActive={pathname === "/team"}
+										asChild
+									>
+										<Link href="/team">
+											<Users className="size-4" />
+											<span>Team</span>
+										</Link>
+									</SidebarMenuButton>
+								</SidebarMenuItem>
+								<SidebarMenuItem>
+									<SidebarMenuButton
+										tooltip="Settings"
+										isActive={pathname === "/settings"}
+										asChild
+									>
+										<Link href="/settings">
+											<Settings className="size-4" />
+											<span>Settings</span>
+										</Link>
+									</SidebarMenuButton>
+								</SidebarMenuItem>
+								<SidebarMenuItem>
+									<SidebarMenuButton
+										tooltip="Sample Reports"
+										isActive={
+											pathname === "/demo-report-list" ||
+											pathname.startsWith("/demo-report")
+										}
+										asChild
+									>
+									<Link href="/demo-report-list">
+											<FileCheck className="size-4" />
+											<span>Sample Reports</span>
+										</Link>
+									</SidebarMenuButton>
+								</SidebarMenuItem>
+								{process.env.NODE_ENV === "development" && (
+									<SidebarMenuItem>
+										<SidebarMenuButton
+											tooltip="Massing Sandbox (dev only)"
+											isActive={pathname === "/massing-sandbox"}
+											asChild
+										>
+											<Link href="/massing-sandbox">
+												<Box className="size-4" />
+												<span>Massing Sandbox</span>
+											</Link>
+										</SidebarMenuButton>
+									</SidebarMenuItem>
+								)}
+							</SidebarMenu>
+						</SidebarGroupContent>
+					</SidebarGroup>
+				</SidebarContent>
+				<SidebarFooter>
+					<SidebarMenu>
+						{/* User info section */}
+						{userData && (
+							<SidebarMenuItem>
+								<SidebarMenuButton
+									tooltip={userData.user.Name}
+									className="w-full cursor-default"
+									disabled
+								>
+									<User className="size-4" />
+									<span className="truncate">
+										{userData.user.Name}
+									</span>
+								</SidebarMenuButton>
+							</SidebarMenuItem>
+						)}
+						<SidebarMenuItem>
+							<SidebarMenuButton
+								tooltip="Sign out"
+								onClick={() => {
+									removeAuthToken();
+									router.push("/login");
+								}}
+								className="w-full"
+							>
+								<LogOut className="size-4" />
+								<span>Sign out</span>
+							</SidebarMenuButton>
+						</SidebarMenuItem>
+					</SidebarMenu>
+				</SidebarFooter>
+			</Sidebar>
+			<SidebarInset>
+				{/* Header with toggle button - hidden on report view and in print */}
+				<header
+					className={`flex h-16 shrink-0 items-center gap-2 border-b px-4 workspace-page-header ${pathname.includes("/viewreport") || pathname.includes("/assemblagereportview") ? "hidden" : ""}`}
+				>
+					<SidebarTrigger className="-ml-1" />
+					<h1 className="text-lg font-semibold text-[#37322F]">
+						{pageTitle}
+					</h1>
+				</header>
+				{/* Main content area */}
+				{children}
+			</SidebarInset>
+		</SidebarProvider>
+	);
+}
