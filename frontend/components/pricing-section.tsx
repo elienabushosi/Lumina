@@ -213,9 +213,9 @@ export default function PricingSection() {
 									</div>
 								</div>
 
-								<div className="self-stretch px-4 py-[10px] relative bg-[#37322F] shadow-[0px_2px_4px_rgba(55,50,47,0.12)] overflow-hidden rounded-[99px] flex justify-center items-center">
+								<div className="self-stretch px-4 py-[10px] relative bg-[#6C70BA] shadow-[0px_2px_4px_rgba(55,50,47,0.12)] overflow-hidden rounded-[99px] flex justify-center items-center hover:bg-[#6C70BA]/90 transition-colors">
 									<div className="w-full h-[41px] absolute left-0 top-[-0.5px] bg-gradient-to-b from-[rgba(255,255,255,0.20)] to-[rgba(0,0,0,0.10)] mix-blend-multiply"></div>
-									<div className="max-w-[108px] flex justify-center flex-col text-[#FBFAF9] text-[13px] font-medium leading-5 font-sans">
+									<div className="max-w-[108px] flex justify-center flex-col text-white text-[13px] font-medium leading-5 font-sans">
 										Start for free
 									</div>
 								</div>
@@ -238,7 +238,7 @@ export default function PricingSection() {
 												>
 													<path
 														d="M10 3L4.5 8.5L2 6"
-														stroke="#9CA3AF"
+														stroke="#6C70BA"
 														strokeWidth="1.5"
 														strokeLinecap="round"
 														strokeLinejoin="round"
@@ -255,14 +255,14 @@ export default function PricingSection() {
 						</div>
 
 						{/* Professional Plan (Featured) */}
-						<div className="flex-1 max-w-full md:max-w-none self-stretch px-6 py-5 bg-[#37322F] border border-[rgba(50,45,43,0.12)] border-[rgba(55,50,47,0.12)] overflow-hidden flex flex-col justify-start items-start gap-12">
+						<div className="flex-1 max-w-full md:max-w-none self-stretch px-6 py-5 bg-[#979dac] border border-[rgba(0,0,0,0.08)] overflow-hidden flex flex-col justify-start items-start gap-12">
 							{/* Plan Header */}
 							<div className="self-stretch flex flex-col justify-start items-center gap-9">
 								<div className="self-stretch flex flex-col justify-start items-start gap-2">
 									<div className="text-[#FBFAF9] text-lg font-medium leading-7 font-sans">
 										Pilot Member
 									</div>
-									<div className="w-full max-w-[242px] text-[#B2AEA9] text-sm font-normal leading-5 font-sans">
+									<div className="w-full max-w-[242px] text-white text-sm font-normal leading-5 font-sans">
 										Unlimited usage & helping shape the
 										product
 									</div>
@@ -341,9 +341,9 @@ export default function PricingSection() {
 								</div>
 
 								{/* CTA Button */}
-								<div className="self-stretch px-4 py-[10px] relative bg-[#FBFAF9] shadow-[0px_2px_4px_rgba(55,50,47,0.12)] overflow-hidden rounded-[99px] flex justify-center items-center">
+								<div className="self-stretch px-4 py-[10px] relative bg-[#6C70BA] shadow-[0px_2px_4px_rgba(55,50,47,0.12)] overflow-hidden rounded-[99px] flex justify-center items-center hover:bg-[#6C70BA]/90 transition-colors">
 									<div className="w-full h-[41px] absolute left-0 top-[-0.5px] bg-gradient-to-b from-[rgba(255,255,255,0)] to-[rgba(0,0,0,0.10)] mix-blend-multiply"></div>
-									<div className="max-w-[108px] flex justify-center flex-col text-[#37322F] text-[13px] font-medium leading-5 font-sans">
+									<div className="max-w-[108px] flex justify-center flex-col text-white text-[13px] font-medium leading-5 font-sans">
 										Get started
 									</div>
 								</div>
@@ -369,7 +369,7 @@ export default function PricingSection() {
 											>
 												<path
 													d="M10 3L4.5 8.5L2 6"
-													stroke="#FF8000"
+													stroke="#6C70BA"
 													strokeWidth="1.5"
 													strokeLinecap="round"
 													strokeLinejoin="round"

@@ -246,14 +246,12 @@ function LoginPageContent() {
 					Back
 				</button>
 				<div className="bg-white rounded-lg shadow-sm border border-[rgba(55,50,47,0.12)] p-8">
-					{/* Logo placeholder – replace with your logo image */}
 					<div className="flex justify-center mb-6">
-						<div
-							className="h-8 w-32 sm:h-9 sm:w-36 bg-[rgba(55,50,47,0.08)] rounded border border-[rgba(55,50,47,0.12)] flex items-center justify-center"
-							aria-hidden
-						>
-							<span className="text-[10px] text-[#6b7280] text-center">144×36</span>
-						</div>
+						<img
+							src="/logos/Lumina-logo-transparent.svg"
+							alt="Lumina"
+							className="h-8 w-auto sm:h-9 object-contain"
+						/>
 					</div>
 					{/* Login form – only when not in forgot-password flow */}
 					{!showForgotPassword && (

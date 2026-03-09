@@ -19,7 +19,7 @@ export function HeroSection() {
 
           {/* CTA Button */}
           <div className="flex justify-center">
-            <Button className="h-10 px-12 bg-[#37322f] hover:bg-[#37322f]/90 text-white rounded-full font-medium text-sm shadow-[0px_0px_0px_2.5px_rgba(255,255,255,0.08)_inset]">
+            <Button className="h-10 px-12 bg-[#6C70BA] hover:bg-[#6C70BA]/90 text-white rounded-full font-medium text-sm shadow-[0px_0px_0px_2.5px_rgba(255,255,255,0.08)_inset]">
               Try For Free
             </Button>
           </div>

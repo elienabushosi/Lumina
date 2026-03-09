@@ -20,9 +20,8 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-	title: "SaaS Template - Disconnected SaaS Boilerplate",
-	description:
-		"Disconnected SaaS boilerplate for developers to clone and deploy their own SaaS applications.",
+	title: "Lumnia - Insurance Quote Automation",
+	description: "Lumnia automates insurance quotes",
 	generator: "v0.app",
 	icons: {
 		icon: "/favicon-32x32.png",

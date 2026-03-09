@@ -85,10 +85,10 @@ export default function DocumentationSection() {
 								<div
 									key={index}
 									onClick={() => handleCardClick(index)}
-									className={`w-full overflow-hidden flex flex-col justify-start items-start transition-all duration-300 cursor-pointer bg-[#685954] ${
+									className={`w-full overflow-hidden flex flex-col justify-start items-start transition-all duration-300 cursor-pointer bg-[#5c677d] ${
 										isActive
 											? "shadow-[0px_0px_0px_0.75px_rgba(232,230,223,0.3)_inset]"
-											: "border border-[#5a4d49]"
+											: "border border-[#4a5568]"
 									}`}
 								>
 									<div
