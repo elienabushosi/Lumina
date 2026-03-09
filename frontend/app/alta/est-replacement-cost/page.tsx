@@ -1,4 +1,42 @@
+"use client";
+
+import { useState } from "react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
+
 export default function AltaEstReplacementCostPage() {
+  const [form, setForm] = useState({
+    exteriorWallFinish: "Veneer - Brick",
+    exteriorWallConstruction: "Wood Framing",
+    heatingSystems: "Forced Air",
+    primarySystem: "Forced Air",
+    coolingSystems: "Central AC",
+    foundationType: "Concrete Slab",
+    bathroomTypes: "Full Bath 1/2 Bath",
+    flooringTypes: "Carpet Tile Ceramic",
+    fireplaces: "None",
+    // Editable text fields
+    storiesAboveGround: "1 story",
+    garageCapacity: "2 Car (397 - 576 sq. ft.)",
+    numberFullBaths: "2",
+    numberHalfBaths: "1",
+    percentCarpet: "50",
+    percentTileCeramic: "50",
+    numberForcedAir: "1",
+    numberCentralAC: "1",
+    overallQualityGrade: "Above Average",
+    foundationShape: "6-7 Corners - L Shape",
+  });
+
+  const update = (key: keyof typeof form, value: string) =>
+    setForm((prev) => ({ ...prev, [key]: value }));
+
   return (
     <div className="min-h-screen bg-[#F3F6FB] flex px-4 py-6 md:px-8">
       {/* Sidebar */}
@@ -72,18 +110,32 @@ export default function AltaEstReplacementCostPage() {
       {/* Main content */}
       <main className="flex-1 ml-4 md:ml-6">
         <div className="bg-[#e6eff8ff] border border-[#E2E8F0] p-6 space-y-6">
-          {/* Header value */}
-          <div className="flex flex-col gap-1">
-            <p className="text-base md:text-lg font-semibold uppercase tracking-wide text-[#111827]">
-              Est. home replacement cost
-            </p>
-            <div className="flex items-baseline gap-3 mt-1">
-              <p className="text-3xl md:text-4xl font-semibold text-[#111827]">
-                $453,000
+          {/* Header value + Open 360Value */}
+          <div className="flex items-start justify-between gap-6">
+            <div className="flex flex-col gap-1">
+              <p className="text-base md:text-lg font-semibold uppercase tracking-wide text-[#111827]">
+                Est. home replacement cost
               </p>
-              <span className="text-xs text-[#6B7280]">
-                Based on 360Value and other information provided
-              </span>
+              <div className="flex items-baseline gap-3 mt-1">
+                <p className="text-3xl md:text-4xl font-semibold text-[#111827]">
+                  $453,000
+                </p>
+                <span className="text-xs text-[#6B7280]">
+                  Based on 360Value and other information provided
+                </span>
+              </div>
+            </div>
+            <div className="text-xs text-[#6B7280] space-y-1 text-right shrink-0">
+              <a
+                href="/360Value"
+                className="inline-flex items-center justify-center rounded-full bg-white px-5 py-2 text-[13px] font-semibold text-[#1D4ED8] border border-[#BFDBFE] shadow-sm"
+              >
+                Open 360Value
+              </a>
+              <div className="mt-1">
+                <div>360Value ID: A8E2-QA25</div>
+                <div>360Value ID Version: A8E2-QA25.3</div>
+              </div>
             </div>
           </div>
 
@@ -95,30 +147,152 @@ export default function AltaEstReplacementCostPage() {
             <div className="grid gap-4 md:grid-cols-2 text-[13px] text-[#374151]">
               {/* Left stack – matches left side of screenshot */}
               <div className="space-y-3">
-                <Field label="Stories above ground" value="1 story" />
+                <InputField
+                  label="Stories above ground"
+                  value={form.storiesAboveGround}
+                  onChange={(v) => update("storiesAboveGround", v)}
+                />
                 <Field label="Garage style" value="Attached / Built-in" />
-                <Field label="Garage capacity" value="2 Car (397 - 576 sq. ft.)" />
-                <Field label="Bathroom types" value="Full Bath, 1/2 Bath" />
-                <Field label="Number of full baths" value="2" />
-                <Field label="Number of 1/2 baths" value="1" />
-                <Field label="Flooring types" value="Carpet, Tile, Ceramic" />
-                <Field label="Percent Carpet" value="50" />
-                <Field label="Percent Tile - Ceramic" value="50" />
-                <Field label="Fireplaces" value="None" />
+                <InputField
+                  label="Garage capacity"
+                  value={form.garageCapacity}
+                  onChange={(v) => update("garageCapacity", v)}
+                />
+                <SelectField
+                  label="Bathroom types"
+                  value={form.bathroomTypes}
+                  options={[
+                    "Full Bath 1/2 Bath",
+                    "Full Bath Only",
+                    "3/4 Bath 1/2 Bath",
+                    "Full Bath 3/4 Bath 1/2 Bath",
+                  ]}
+                  onValueChange={(v) => update("bathroomTypes", v)}
+                />
+                <InputField
+                  label="Number of full baths"
+                  value={form.numberFullBaths}
+                  onChange={(v) => update("numberFullBaths", v)}
+                />
+                <InputField
+                  label="Number of 1/2 baths"
+                  value={form.numberHalfBaths}
+                  onChange={(v) => update("numberHalfBaths", v)}
+                />
+                <SelectField
+                  label="Flooring types"
+                  value={form.flooringTypes}
+                  options={[
+                    "Carpet Tile Ceramic",
+                    "Hardwood",
+                    "Luxury Vinyl Plank",
+                    "Tile Only",
+                    "Mixed",
+                  ]}
+                  onValueChange={(v) => update("flooringTypes", v)}
+                />
+                <InputField
+                  label="Percent Carpet"
+                  value={form.percentCarpet}
+                  onChange={(v) => update("percentCarpet", v)}
+                />
+                <InputField
+                  label="Percent Tile - Ceramic"
+                  value={form.percentTileCeramic}
+                  onChange={(v) => update("percentTileCeramic", v)}
+                />
+                <SelectField
+                  label="Fireplaces"
+                  value={form.fireplaces}
+                  options={["None", "1 Fireplace", "2 Fireplaces", "3+ Fireplaces"]}
+                  onValueChange={(v) => update("fireplaces", v)}
+                />
               </div>
 
               {/* Right stack – matches right side of screenshot */}
               <div className="space-y-3">
-                <Field label="Exterior wall finish" value="Veneer - Brick" />
-                <Field label="Exterior wall construction" value="Wood framing" />
-                <Field label="Heating systems" value="Forced Air" />
-                <Field label="Primary system" value="Forced Air" />
-                <Field label="Number of Forced Air" value="1" />
-                <Field label="Cooling systems" value="Central AC" />
-                <Field label="Number of Central AC" value="1" />
-                <Field label="Overall quality grade" value="Above Average" />
-                <Field label="Foundation type" value="Concrete slab" />
-                <Field label="Foundation Shape" value="6-7 Corners - L Shape" />
+                <SelectField
+                  label="Exterior wall finish"
+                  value={form.exteriorWallFinish}
+                  options={[
+                    "Veneer - Brick",
+                    "Stucco",
+                    "Vinyl Siding",
+                    "Stone Veneer",
+                    "Fiber Cement",
+                  ]}
+                  onValueChange={(v) => update("exteriorWallFinish", v)}
+                />
+                <SelectField
+                  label="Exterior wall construction"
+                  value={form.exteriorWallConstruction}
+                  options={[
+                    "Wood Framing",
+                    "Steel Framing",
+                    "Masonry Block",
+                    "Insulated Concrete Form",
+                  ]}
+                  onValueChange={(v) => update("exteriorWallConstruction", v)}
+                />
+                <SelectField
+                  label="Heating systems"
+                  value={form.heatingSystems}
+                  options={[
+                    "Forced Air",
+                    "Radiant Heat",
+                    "Baseboard Electric",
+                    "Heat Pump",
+                  ]}
+                  onValueChange={(v) => update("heatingSystems", v)}
+                />
+                <SelectField
+                  label="Primary system"
+                  value={form.primarySystem}
+                  options={["Forced Air", "Heat Pump", "Boiler", "Mini Split"]}
+                  onValueChange={(v) => update("primarySystem", v)}
+                />
+                <InputField
+                  label="Number of Forced Air"
+                  value={form.numberForcedAir}
+                  onChange={(v) => update("numberForcedAir", v)}
+                />
+                <SelectField
+                  label="Cooling systems"
+                  value={form.coolingSystems}
+                  options={[
+                    "Central AC",
+                    "Window Units",
+                    "Mini Split",
+                    "Evaporative Cooler",
+                  ]}
+                  onValueChange={(v) => update("coolingSystems", v)}
+                />
+                <InputField
+                  label="Number of Central AC"
+                  value={form.numberCentralAC}
+                  onChange={(v) => update("numberCentralAC", v)}
+                />
+                <InputField
+                  label="Overall quality grade"
+                  value={form.overallQualityGrade}
+                  onChange={(v) => update("overallQualityGrade", v)}
+                />
+                <SelectField
+                  label="Foundation type"
+                  value={form.foundationType}
+                  options={[
+                    "Concrete Slab",
+                    "Pier & Beam",
+                    "Crawl Space",
+                    "Basement",
+                  ]}
+                  onValueChange={(v) => update("foundationType", v)}
+                />
+                <InputField
+                  label="Foundation Shape"
+                  value={form.foundationShape}
+                  onChange={(v) => update("foundationShape", v)}
+                />
               </div>
             </div>
           </section>
@@ -151,6 +325,62 @@ function Field({ label, value }: FieldProps) {
       </div>
       <div className="border border-[#D1D5DB] bg-[#F9FAFB] px-2 py-1 text-right text-xs justify-self-end w-full">
         {value}
+      </div>
+    </div>
+  );
+}
+
+type InputFieldProps = {
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+};
+
+function InputField({ label, value, onChange }: InputFieldProps) {
+  return (
+    <div className="grid grid-cols-[minmax(0,1fr)_220px] items-center gap-x-4 pl-4">
+      <div className="text-[11px] font-semibold text-[#111827]">{label}</div>
+      <div className="w-full">
+        <Input
+          type="text"
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          className="h-8 w-full border-[#D1D5DB] bg-[#F9FAFB] px-2 py-1 text-right text-xs text-[#111827] rounded-none"
+        />
+      </div>
+    </div>
+  );
+}
+
+type SelectFieldProps = {
+  label: string;
+  value: string;
+  options: string[];
+  onValueChange: (value: string) => void;
+};
+
+function SelectField({
+  label,
+  value,
+  options,
+  onValueChange,
+}: SelectFieldProps) {
+  return (
+    <div className="grid grid-cols-[minmax(0,1fr)_220px] items-center gap-x-4 pl-4">
+      <div className="text-[11px] font-semibold text-[#111827]">{label}</div>
+      <div className="w-full">
+        <Select value={value} onValueChange={onValueChange}>
+          <SelectTrigger className="h-8 w-full border-[#D1D5DB] bg-[#F9FAFB] text-xs text-[#111827] rounded-none">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent className="rounded-none">
+            {options.map((opt) => (
+              <SelectItem key={opt} value={opt} className="text-xs">
+                {opt}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
     </div>
   );
