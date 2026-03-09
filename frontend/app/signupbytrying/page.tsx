@@ -87,7 +87,7 @@ export default function SignupByTryingPage(): React.JSX.Element {
 	const onSubmit = (values: FormValues) => {
 		// Placeholder; wire to your backend when ready.
 		console.log("Sign up by trying:", values);
-		router.push("/home");
+		router.push("/research-agent");
 	};
 
 	return (

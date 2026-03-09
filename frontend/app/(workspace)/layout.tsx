@@ -36,6 +36,7 @@ import {
 	SquareStack,
 	SquareDashed,
 	Box,
+	ScanSearch,
 } from "lucide-react";
 
 function SidebarHeaderContent({
@@ -48,17 +49,11 @@ function SidebarHeaderContent({
 
 	return (
 		<div className="flex flex-col items-center gap-3 p-4">
-			{/* Logo placeholder – replace with your logo image */}
-			<div
-				className={`flex items-center justify-center rounded border border-[rgba(55,50,47,0.12)] bg-[rgba(55,50,47,0.08)] ${
-					isCollapsed ? "h-8 w-10" : "h-9 w-full max-w-[140px]"
-				}`}
-				aria-hidden
-			>
-				<span className="text-[9px] text-[#6b7280] text-center px-0.5">
-					{isCollapsed ? "32×32" : "140×36"}
-				</span>
-			</div>
+			<img
+				src="/logos/Lumina-logo-transparent.svg"
+				alt="Lumina"
+				className={`object-contain ${isCollapsed ? "h-8 w-10" : "h-9 w-full max-w-[140px]"}`}
+			/>
 			{/* Company name - hidden when collapsed */}
 			{!isCollapsed && (
 				<div className="text-center">
@@ -72,6 +67,9 @@ function SidebarHeaderContent({
 }
 
 function getPageTitle(pathname: string): string {
+	if (pathname === "/research-agent") {
+		return "Research Agent";
+	}
 	if (pathname === "/home" || pathname === "/") {
 		return "Home";
 	} else if (pathname === "/main-page-1") {
@@ -194,84 +192,17 @@ export default function WorkspaceLayout({
 							<SidebarMenu>
 								<SidebarMenuItem>
 									<SidebarMenuButton
-										tooltip="Home"
-										isActive={
-											pathname === "/home" ||
-											pathname === "/"
-										}
+										tooltip="Research Agent - Demo"
+										isActive={pathname === "/research-agent"}
 										asChild
 									>
-										<Link href="/home">
-											<Home className="size-4" />
-											<span>Home</span>
+										<Link href="/research-agent">
+											<ScanSearch className="size-4" />
+											<span>Research Agent - Demo</span>
 										</Link>
 									</SidebarMenuButton>
 								</SidebarMenuItem>
-								<SidebarMenuItem>
-									<SidebarMenuButton
-										tooltip="Main Page 1"
-										isActive={
-											pathname === "/main-page-1"
-										}
-										asChild
-									>
-										<Link href="/main-page-1">
-											<SquareDashed className="size-4" />
-											<span>Main Page 1</span>
-										</Link>
-									</SidebarMenuButton>
-								</SidebarMenuItem>
-								<SidebarMenuItem>
-									<SidebarMenuButton
-										tooltip="Main Page 2"
-										isActive={pathname === "/reports"}
-										asChild
-									>
-										<Link href="/reports">
-											<FileText className="size-4" />
-											<span>Main Page 2</span>
-										</Link>
-									</SidebarMenuButton>
-								</SidebarMenuItem>
-								<SidebarMenuItem>
-									<SidebarMenuButton
-										tooltip="Items"
-										isActive={
-											pathname === "/demo-report-list" ||
-											pathname.startsWith("/demo-report")
-										}
-										asChild
-									>
-										<Link href="/demo-report-list">
-											<FileCheck className="size-4" />
-											<span>Items</span>
-										</Link>
-									</SidebarMenuButton>
-								</SidebarMenuItem>
-								<SidebarMenuItem>
-									<SidebarMenuButton
-										tooltip="Team"
-										isActive={pathname === "/team"}
-										asChild
-									>
-										<Link href="/team">
-											<Users className="size-4" />
-											<span>Team</span>
-										</Link>
-									</SidebarMenuButton>
-								</SidebarMenuItem>
-								<SidebarMenuItem>
-									<SidebarMenuButton
-										tooltip="Settings"
-										isActive={pathname === "/settings"}
-										asChild
-									>
-										<Link href="/settings">
-											<Settings className="size-4" />
-											<span>Settings</span>
-										</Link>
-									</SidebarMenuButton>
-								</SidebarMenuItem>
+								{/* Previously: Home, Main Page 1, Main Page 2, Items, Team, Settings – see git history to restore */}
 							</SidebarMenu>
 						</SidebarGroupContent>
 					</SidebarGroup>

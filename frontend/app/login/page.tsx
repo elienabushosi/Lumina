@@ -133,7 +133,7 @@ function LoginPageContent() {
 				setIsSuccess(true);
 				// Navigate to home page after showing success
 				setTimeout(() => {
-					router.push("/home");
+					router.push("/research-agent");
 				}, 500);
 			}, 1000);
 		} catch (error) {
