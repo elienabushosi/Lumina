@@ -588,15 +588,17 @@ export default function ResearchAgentPage() {
 							</div>
 						</div>
 
-						<div className="flex items-center justify-end pt-2">
-							<Button
-								type="button"
-								onClick={() => setStep(STEPS.READY_360)}
-								className="bg-[#6C70BA] hover:bg-[#6C70BA]/90 text-white"
-							>
-								Review Research
-							</Button>
-						</div>
+						{redfinStage === 2 && (
+							<div className="flex items-center justify-end pt-2">
+								<Button
+									type="button"
+									onClick={() => setStep(STEPS.READY_360)}
+									className="bg-[#6C70BA] hover:bg-[#6C70BA]/90 text-white"
+								>
+									Review Research
+								</Button>
+							</div>
+						)}
 					</div>
 				)}
 
