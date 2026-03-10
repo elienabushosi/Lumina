@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import {
   Select,
   SelectContent,
@@ -10,14 +11,15 @@ import {
 } from "@/components/ui/select";
 
 export default function AltaPage() {
+  const router = useRouter();
   const [form, setForm] = useState({
-    use: "Single Family Detached",
+    use: "Multi Family",
     style: "Unknown",
     numberOfStories: "1 Story",
     foundationType: "Concrete Slab",
     exteriorWallFinish: "Brick Veneer",
     exteriorWallConstruction: "Wood Framing",
-    roofCover: "Composition - Architectural Shingle",
+    roofCover: "Tile",
     garageCarport: "2 Car (397–576 sq ft)",
     styleGarage: "Attached / Built-In",
     floorCoverings: "Carpet; Tile - Ceramic",
@@ -34,7 +36,7 @@ export default function AltaPage() {
     plumbing: "Yes - PEX",
     solarPanels: "No",
     roofMaterials: "Composition - Architectural shingle",
-    roofingStyle: "Hip",
+    roofingStyle: "Gable",
     roofReplacementYear: "2011–Present",
     constructionRenovation: "No",
   });
@@ -353,10 +355,17 @@ export default function AltaPage() {
 
             {/* Footer actions */}
             <div className="flex justify-start gap-3 items-center pt-4 border-t border-[#E5E7EB]">
-              <button className="px-4 py-2 text-sm text-[#1F2937] border border-[#D1D5DB] rounded-md bg-white hover:bg-[#F3F4F6]">
+              <button
+                type="button"
+                className="px-4 py-2 text-sm text-[#1F2937] border border-[#D1D5DB] rounded-md bg-white hover:bg-[#F3F4F6]"
+              >
                 Back
               </button>
-              <button className="px-5 py-2 text-sm font-medium text-white bg-[#2563EB] hover:bg-[#1D4ED8] rounded-md">
+              <button
+                type="button"
+                className="px-5 py-2 text-sm font-medium text-white bg-[#2563EB] hover:bg-[#1D4ED8] rounded-md"
+                onClick={() => router.push("/alta/est-replacement-cost")}
+              >
                 Continue
               </button>
             </div>

@@ -1,3 +1,5 @@
+"use client";
+
 import { LayoutGrid, Search, GitCompare, CircleHelp } from "lucide-react";
 import {
   Select,
@@ -6,8 +8,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useRouter } from "next/navigation";
 
 export default function Value360Page() {
+  const router = useRouter();
   return (
     <div className="min-h-screen flex bg-white">
       {/* Sidebar */}
@@ -158,7 +162,11 @@ export default function Value360Page() {
               <button className="px-4 py-2 text-sm font-medium text-white bg-[#1F7BB6] hover:bg-[#186596] rounded-sm">
                 Enter more details
               </button>
-              <button className="px-4 py-2 text-sm font-medium text-white bg-[#2E7D32] hover:bg-[#1B5E20] rounded-sm">
+              <button
+                type="button"
+                className="px-4 py-2 text-sm font-medium text-white bg-[#2E7D32] hover:bg-[#1B5E20] rounded-sm"
+                onClick={() => router.push("/alta/est-replacement-cost/from-360")}
+              >
                 Calculate now
               </button>
             </div>

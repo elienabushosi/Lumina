@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 
-export default function AltaEstReplacementCostPage() {
+export default function AltaEstReplacementCostFrom360Page() {
   const [form, setForm] = useState({
     exteriorWallFinish: "Veneer - Brick",
     exteriorWallConstruction: "Wood Framing",
@@ -36,18 +36,11 @@ export default function AltaEstReplacementCostPage() {
   });
   const [isSaved, setIsSaved] = useState(false);
   const [displayValue, setDisplayValue] = useState(453000);
-  const [hasAnimated, setHasAnimated] = useState(false);
 
   const update = (key: keyof typeof form, value: string) =>
     setForm((prev) => ({ ...prev, [key]: value }));
 
   useEffect(() => {
-    // Simple always-on animation on first mount so it’s clearly visible.
-    if (hasAnimated) return;
-    const from360 = typeof window !== "undefined" && new URLSearchParams(window.location.search).get("from360") === "1";
-    if (!from360) return;
-
-    setHasAnimated(true);
     const start = 453000;
     const end = 471829;
     const duration = 1500;
@@ -65,7 +58,7 @@ export default function AltaEstReplacementCostPage() {
       }
     }, stepDuration);
     return () => clearInterval(interval);
-  }, [hasAnimated]);
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#F3F6FB] flex px-4 py-6 md:px-8">
@@ -435,4 +428,3 @@ function SelectField({
     </div>
   );
 }
-

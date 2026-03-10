@@ -760,9 +760,6 @@ export default function ResearchAgentPage() {
 				{step === STEPS.READY_360 && (
 					<div className="rounded-lg border border-[rgba(55,50,47,0.12)] bg-white p-6 space-y-6">
 						<div className="space-y-1">
-							<p className="text-sm font-medium text-[#37322F]">
-								Ready to go back to 360 to fill out replacement cost section?
-							</p>
 							<p className="text-xs text-[#605A57]">
 								Here&apos;s a summary of what the Research Agent inferred for this property during the demo.
 							</p>
@@ -907,6 +904,9 @@ export default function ResearchAgentPage() {
 						</div>
 
 						<div className="space-y-3">
+							<p className="text-sm font-medium text-[#37322F]">
+								Ready to go back to 360 to fill out replacement cost section?
+							</p>
 							<p className="text-sm text-[#605A57]">
 								We can use this information to fill out the replacement cost section in 360 automatically.
 							</p>
