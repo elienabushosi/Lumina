@@ -70,6 +70,9 @@ function getPageTitle(pathname: string): string {
 	if (pathname === "/research-agent") {
 		return "Research Agent";
 	}
+	if (pathname === "/research-browser-run") {
+		return "Browser Run";
+	}
 	if (pathname === "/home" || pathname === "/") {
 		return "Home";
 	} else if (pathname === "/main-page-1") {

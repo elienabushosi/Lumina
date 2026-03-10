@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
@@ -32,8 +33,8 @@ const DUMMY_ATTRIBUTES = [
 	{ label: "Year built", value: "2003" },
 	{ label: "Living area", value: "1,914 sq ft" },
 	{ label: "Total building", value: "2,379 sq ft" },
-	{ label: "Lot size", value: "9,471–9,583 sq ft" },
-	{ label: "Garage", value: "465 sq ft" },
+	{ label: "Attached Garage", value: "465 sq ft" },
+	{ label: "Covered Porch/Patio", value: "44 sq ft" },
 	{ label: "County", value: "Collin County" },
 	{ label: "Last sale", value: "$133,700 on 8/13/2003" },
 	{ label: "Estimated value", value: "$355,921" },
@@ -44,6 +45,7 @@ const COLLIN_CAD_SOURCE_URL =
 	"https://esearch.collincad.org/Property/View/2516503?year=2026&ownerId=558191";
 
 export default function ResearchAgentPage() {
+	const router = useRouter();
 	const [step, setStep] = useState(STEPS.INPUT);
 	const [address, setAddress] = useState("");
 	const [groundStage, setGroundStage] = useState(0); // 0: loading, 1: inferring, 2: results
@@ -181,7 +183,7 @@ export default function ResearchAgentPage() {
 				{step === STEPS.INPUT && (
 					<>
 						<p className="text-sm text-[#605A57]">
-							Enter an address to start. Demo uses dummy data.
+							Enter an address to start.
 						</p>
 						<div className="flex justify-end gap-3">
 							<Input
@@ -197,6 +199,7 @@ export default function ResearchAgentPage() {
 								className="h-10 px-6 bg-[#6C70BA] hover:bg-[#6C70BA]/90 text-white shrink-0"
 							>
 								Research
+								<Sparkles className="w-4 h-4 ml-2" />
 							</Button>
 						</div>
 					</>
@@ -244,9 +247,29 @@ export default function ResearchAgentPage() {
 				{/* Step 3: Data pulled (show dummy data) + Google Maps question */}
 				{step === STEPS.DATA_PULLED && (
 					<div className="rounded-lg border border-[rgba(55,50,47,0.12)] bg-white p-6 space-y-4">
-						<p className="text-sm font-medium text-[#37322F]">
-							Data pulled from Collin County CAD
-						</p>
+						<div className="flex items-center justify-between gap-4">
+							<div className="flex items-center gap-2">
+								<img
+									src="/collin-cad%20simple%20logo.png"
+									alt="Collin County CAD"
+									className="h-6 w-auto object-contain"
+								/>
+								<p className="text-sm font-medium text-[#37322F]">
+									Collin County CAD Property Report
+								</p>
+							</div>
+							<p className="text-xs text-[#605A57] shrink-0">
+								Source:{" "}
+								<a
+									href={COLLIN_CAD_SOURCE_URL}
+									target="_blank"
+									rel="noreferrer"
+									className="text-[#6C70BA] underline hover:no-underline"
+								>
+									Collin CAD Property Search (Property ID 2516503)
+								</a>
+							</p>
+						</div>
 						<div className="overflow-x-auto rounded-md border border-[rgba(55,50,47,0.12)]">
 							<table className="w-full text-sm">
 								<tbody>
@@ -266,17 +289,6 @@ export default function ResearchAgentPage() {
 								</tbody>
 							</table>
 						</div>
-						<p className="text-xs text-[#605A57]">
-							Source:{" "}
-							<a
-								href={COLLIN_CAD_SOURCE_URL}
-								target="_blank"
-								rel="noreferrer"
-								className="text-[#6C70BA] underline hover:no-underline"
-							>
-								Collin CAD Property Search (Property ID 2516503)
-							</a>
-						</p>
 						<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 							<div>
 								<p className="text-xs font-medium text-[#605A57] mb-1">Property details (Collin CAD)</p>
@@ -570,7 +582,7 @@ export default function ResearchAgentPage() {
 									<img
 										src="/logos/Zillow-Logo.png"
 										alt="Zillow"
-										className="h-8 w-auto object-contain"
+										className="h-12 w-auto object-contain"
 									/>
 									<img
 										src="/logos/Redin-Logo.png"
@@ -593,7 +605,7 @@ export default function ResearchAgentPage() {
 									<img
 										src="/logos/Zillow-Logo.png"
 										alt="Zillow"
-										className="h-6 w-auto object-contain"
+										className="h-9 w-auto object-contain"
 									/>
 									<img
 										src="/logos/Redin-Logo.png"
@@ -781,6 +793,18 @@ export default function ResearchAgentPage() {
 												</tr>
 											))}
 											<tr className="border-b border-[rgba(55,50,47,0.08)]">
+												<td className="py-2 pl-3 text-[#605A57]">Living Area</td>
+												<td className="py-2 pr-3 text-right font-medium text-[#37322F]">1,914 sq ft</td>
+											</tr>
+											<tr className="border-b border-[rgba(55,50,47,0.08)]">
+												<td className="py-2 pl-3 text-[#605A57]">Attached Garage</td>
+												<td className="py-2 pr-3 text-right font-medium text-[#37322F]">465 sq ft</td>
+											</tr>
+											<tr className="border-b border-[rgba(55,50,47,0.08)]">
+												<td className="py-2 pl-3 text-[#605A57]">Covered Porch/Patio</td>
+												<td className="py-2 pr-3 text-right font-medium text-[#37322F]">44 sq ft</td>
+											</tr>
+											<tr className="border-b border-[rgba(55,50,47,0.08)]">
 												<td className="py-2 pl-3 text-[#605A57]">Bedrooms</td>
 												<td className="py-2 pr-3 text-right font-medium text-[#37322F]">4</td>
 											</tr>
@@ -891,6 +915,7 @@ export default function ResearchAgentPage() {
 									<Button
 										type="button"
 										className="bg-[#6C70BA] hover:bg-[#6C70BA]/90 text-white inline-flex items-center gap-2"
+										onClick={() => router.push("/research-browser-run")}
 									>
 										<Sparkles className="w-4 h-4" />
 										<span>Fill using AI</span>
