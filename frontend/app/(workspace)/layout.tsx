@@ -114,15 +114,13 @@ export default function WorkspaceLayout({
 			Type: string | null;
 		} | null;
 	} | null>(null);
-	const isDevBypassAuth =
-		process.env.NODE_ENV === "development" &&
-		process.env.NEXT_PUBLIC_BYPASS_AUTH === "1";
+	// When NEXT_PUBLIC_BYPASS_AUTH=1, skip real auth (local dev or Vercel demo)
+	const isBypassAuth = process.env.NEXT_PUBLIC_BYPASS_AUTH === "1";
 	const pageTitle = getPageTitle(pathname);
 
 	useEffect(() => {
 		const checkAuth = async () => {
-			// In development, when NEXT_PUBLIC_BYPASS_AUTH=1, skip real auth
-			if (isDevBypassAuth) {
+			if (isBypassAuth) {
 				setUserData({
 					user: {
 						IdUser: "dev-user-id",
@@ -170,7 +168,7 @@ export default function WorkspaceLayout({
 		};
 
 		checkAuth();
-	}, [router, isDevBypassAuth]);
+	}, [router, isBypassAuth]);
 
 	// Show loading state while checking authentication
 	if (isChecking || !isAuthenticated) {
