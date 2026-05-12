@@ -239,7 +239,7 @@ export default function LandingPage() {
 									>
 										<div className="w-20 sm:w-24 md:w-28 lg:w-44 h-[41px] absolute left-0 top-[-0.5px] bg-gradient-to-b from-[rgba(255,255,255,0)] to-[rgba(0,0,0,0.05)] mix-blend-multiply"></div>
 										<div className="flex flex-col justify-center text-white text-sm sm:text-base md:text-[15px] font-medium leading-5 font-sans">
-											Try Demo
+											Try Interactive Demo
 										</div>
 									</button>
 								</div>

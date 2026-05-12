@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { CircleCheck, PartyPopper } from "lucide-react";
+import { CircleCheck, PartyPopper, Bot, ClipboardCheck, Clock } from "lucide-react";
 
 // Video-aligned timestamps (seconds)
 const STEP_1_END = 17;   // Updating Alta Home features: 0–17s
@@ -105,24 +105,50 @@ export default function ResearchBrowserRunPage() {
 	return (
 		<div className="p-8">
 			<div className="max-w-4xl mx-auto space-y-6">
-				{/* Note above placeholder */}
-				<div className="flex justify-center">
-					<p className="text-sm text-[#6C70BA] flex items-center gap-2">
-						<span aria-hidden="true">🥁</span>
-						<span>
-							You don&apos;t have to watch the whole time. You can close this tab&mdash;we&apos;ll keep working in the
-							background.
-						</span>
-					</p>
+				{/* How this works */}
+				<div className="bg-[#F9FAFB] border border-[rgba(55,50,47,0.10)] rounded-xl p-5 space-y-3">
+					<p className="text-xs font-semibold text-gray-400 uppercase tracking-wide">How this works</p>
+					<div className="grid grid-cols-3 gap-4">
+						<div className="flex flex-col gap-2">
+							<div className="w-8 h-8 rounded-lg bg-[#6c70ba]/10 flex items-center justify-center">
+								<Bot className="w-4 h-4 text-[#6c70ba]" />
+							</div>
+							<p className="text-sm font-medium text-[#37322F]">A browser agent takes over</p>
+							<p className="text-sm text-[#605A57]">Think of it like a digital assistant that opens the insurance forms and fills them in automatically — just like a person would, but without the manual effort.</p>
+						</div>
+						<div className="flex flex-col gap-2">
+							<div className="w-8 h-8 rounded-lg bg-[#6c70ba]/10 flex items-center justify-center">
+								<ClipboardCheck className="w-4 h-4 text-[#6c70ba]" />
+							</div>
+							<p className="text-sm font-medium text-[#37322F]">No copy-pasting required</p>
+							<p className="text-sm text-[#605A57]">All the property details — roof type, square footage, floor finishes — are pulled from our research and entered directly into Alta and 360Value on your behalf.</p>
+						</div>
+						<div className="flex flex-col gap-2">
+							<div className="w-8 h-8 rounded-lg bg-[#6c70ba]/10 flex items-center justify-center">
+								<Clock className="w-4 h-4 text-[#6c70ba]" />
+							</div>
+							<p className="text-sm font-medium text-[#37322F]">Saves up to 3 hours a day</p>
+							<p className="text-sm text-[#605A57]">Agents spend hours every day manually entering the same information across multiple forms. This handles it all in minutes, so you can focus on your clients.</p>
+						</div>
+					</div>
 				</div>
 				{/* Browser-style window: red, yellow, green dots + rounded frame */}
 				<div className="flex justify-center">
 					<div className="w-full max-w-3xl rounded-xl border-2 border-[rgba(55,50,47,0.15)] overflow-hidden bg-[#e8e8e8] shadow-lg">
 						{/* Title bar with traffic light buttons (top left) */}
-						<div className="flex items-center gap-2 px-3 py-2.5 border-b border-[rgba(55,50,47,0.12)] bg-[#e5e5e5]">
-							<span className="w-3 h-3 rounded-full bg-[#ff5f57]" aria-hidden />
-							<span className="w-3 h-3 rounded-full bg-[#febc2e]" aria-hidden />
-							<span className="w-3 h-3 rounded-full bg-[#28c840]" aria-hidden />
+						<div className="flex items-center justify-between gap-2 px-3 py-2.5 border-b border-[rgba(55,50,47,0.12)] bg-[#e5e5e5]">
+							<div className="flex items-center gap-2">
+								<span className="w-3 h-3 rounded-full bg-[#ff5f57]" aria-hidden />
+								<span className="w-3 h-3 rounded-full bg-[#febc2e]" aria-hidden />
+								<span className="w-3 h-3 rounded-full bg-[#28c840]" aria-hidden />
+							</div>
+							{!videoEnded && (
+								<div className="flex items-center gap-1.5">
+									<span className="w-2 h-2 rounded-full bg-[#6c70ba] animate-ping absolute" />
+									<span className="w-2 h-2 rounded-full bg-[#6c70ba] relative" />
+									<span className="text-xs font-medium text-[#6c70ba]">Proposal in progress</span>
+								</div>
+							)}
 						</div>
 						{/* Video area */}
 						<div className="aspect-video bg-black">
@@ -139,6 +165,17 @@ export default function ResearchBrowserRunPage() {
 							/>
 						</div>
 					</div>
+				</div>
+
+				{/* Note below browser */}
+				<div className="flex justify-center">
+					<p className="text-sm text-[#6C70BA] flex items-center gap-2">
+						<span aria-hidden="true">🥁</span>
+						<span>
+							You don&apos;t have to watch the whole time. You can close this tab&mdash;we&apos;ll keep working in the
+							background.
+						</span>
+					</p>
 				</div>
 
 				{/* Progress list – aligned to video timestamps */}
