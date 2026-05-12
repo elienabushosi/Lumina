@@ -87,10 +87,13 @@ export default function CallAgentPage() {
     <div className="p-6">
       <div className="mb-6">
         <div className="flex items-center justify-between">
-          <h2 className="text-xl font-semibold text-[#37322F]">Call Activity</h2>
+          <div className="flex items-baseline gap-3">
+            <h2 className="text-xl font-semibold text-[#37322F]">Call Agent</h2>
+            <p className="text-xs text-gray-400"><span className="font-medium text-gray-500">How it works:</span> Listens to calls, does research, and automatically updates AgencyZoom.</p>
+          </div>
           <img src="/RingCentral_logo.png" alt="RingCentral" className="h-7 object-contain" />
         </div>
-        <p className="text-sm text-gray-500 mt-1">{calls.length} calls today</p>
+        <p className="text-sm text-gray-500 mt-0.5">{calls.length} calls today</p>
       </div>
 
       {/* Summary pills */}

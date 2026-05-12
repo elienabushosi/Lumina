@@ -450,6 +450,11 @@ export default function LeadQualificationPage() {
 
   return (
     <div className="flex flex-col h-[calc(100vh-64px)]">
+      {/* Page heading */}
+      <div className="flex items-center gap-3 px-6 pt-4 pb-2 bg-white shrink-0">
+        <h2 className="text-xl font-semibold text-[#37322F]">Lead Qualifier</h2>
+        <p className="text-xs text-gray-400"><span className="font-medium text-gray-500">How it works:</span> Ensures all information pulled regarding a lead is accurate using real-time back-and-forth conversation.</p>
+      </div>
       {/* Top summary bar */}
       <div className="flex items-center justify-between px-6 py-3 border-b border-gray-200 bg-white shrink-0">
         <div className="flex gap-3">

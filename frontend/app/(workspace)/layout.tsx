@@ -281,6 +281,17 @@ export default function WorkspaceLayout({
           </SidebarGroup>
         </SidebarContent>
         <SidebarFooter>
+          {/* Early Access */}
+          <div className="px-3 pb-2">
+            <a
+              href="https://calendar.app.google/oyQHduj2cSYvidjG6"
+              target="_blank"
+              rel="noreferrer"
+              className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-[#6c70ba] hover:bg-[#6c70ba]/90 transition-colors text-white text-xs font-medium"
+            >
+              Get Early Access
+            </a>
+          </div>
           {/* Connected integrations */}
           <div className="px-3 py-2 border-t border-gray-100">
             <p className="text-[10px] text-gray-400 uppercase tracking-wide mb-2">Connected</p>

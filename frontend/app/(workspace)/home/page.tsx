@@ -7,7 +7,7 @@ export default function HomePage() {
 	const router = useRouter();
 
 	useEffect(() => {
-		router.replace("/research-agent");
+		router.replace("/leads");
 	}, [router]);
 
 	return (

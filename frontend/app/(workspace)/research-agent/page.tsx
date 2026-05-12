@@ -145,9 +145,10 @@ export default function ResearchAgentPage() {
 	return (
 		<div className="p-8">
 			<div className="max-w-4xl mx-auto space-y-6">
-				<h1 className="text-2xl font-semibold text-[#37322F]">
-					Research Agent
-				</h1>
+				<div className="flex items-baseline gap-3">
+					<h1 className="text-2xl font-semibold text-[#37322F]">Research Agent</h1>
+					<p className="text-xs text-gray-400"><span className="font-medium text-gray-500">How it works:</span> Pulls data from CAD, Google Maps, Zillow, and Redfin.</p>
+				</div>
 
 				{step !== STEPS.INPUT && (
 					<>

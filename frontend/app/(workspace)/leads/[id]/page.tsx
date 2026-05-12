@@ -151,7 +151,22 @@ export default function LeadDetailPage() {
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-2xl font-semibold text-[#37322F]">{lead.name}</h2>
         <div className="flex flex-col items-end gap-1.5">
-          <Link href="/research-browser-run" className="inline-flex items-center gap-2 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors" style={{ backgroundColor: "#6c70ba" }}>
+          <style>{`
+            @keyframes glare {
+              0% { transform: translateX(-100%) skewX(-20deg); }
+              100% { transform: translateX(250%) skewX(-20deg); }
+            }
+            .btn-glare::after {
+              content: '';
+              position: absolute;
+              top: 0; left: 0;
+              width: 40%;
+              height: 100%;
+              background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+              animation: glare 2.5s ease-in-out infinite;
+            }
+          `}</style>
+          <Link href="/research-browser-run" className="btn-glare relative overflow-hidden inline-flex items-center gap-2 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors" style={{ backgroundColor: "#6c70ba" }}>
             <Sparkles className="size-4" />
             Fill APEX Proposal Using AI
           </Link>
