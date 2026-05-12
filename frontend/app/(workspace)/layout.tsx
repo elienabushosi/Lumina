@@ -19,6 +19,9 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
   SidebarProvider,
   SidebarInset,
   SidebarTrigger,
@@ -40,6 +43,8 @@ import {
   ContactRound,
   Phone,
   MessagesSquare,
+  BotMessageSquare,
+  ChevronDown,
 } from "lucide-react";
 
 function SidebarHeaderContent({
@@ -77,7 +82,7 @@ function getPageTitle(pathname: string): string {
     return "Call Agent";
   }
   if (pathname.startsWith("/lead-qualification")) {
-    return "Lead Qualification Agent";
+    return "Lead Qualifier";
   }
   if (pathname === "/research-agent") {
     return "Research Agent";
@@ -111,6 +116,7 @@ export default function WorkspaceLayout({
   const pathname = usePathname();
   const router = useRouter();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [aiWorkersOpen, setAiWorkersOpen] = useState(true);
   const [isChecking, setIsChecking] = useState(true);
   const [userData, setUserData] = useState<{
     user: {
@@ -203,63 +209,98 @@ export default function WorkspaceLayout({
           <SidebarGroup>
             <SidebarGroupContent>
               <SidebarMenu>
+                {/* Leads */}
                 <SidebarMenuItem>
                   <SidebarMenuButton
                     tooltip="Leads"
-                    isActive={pathname === "/leads"}
+                    isActive={pathname.startsWith("/leads")}
                     asChild
                   >
                     <Link href="/leads">
                       <ContactRound className="size-4" />
                       <span>Leads</span>
-                      <img src="/AgencyZoom-removebg-preview.png" alt="AgencyZoom" className="h-3.5 w-auto object-contain ml-auto" />
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
+
+                {/* AI Workers collapsible */}
                 <SidebarMenuItem>
                   <SidebarMenuButton
-                    tooltip="Call Agent"
-                    isActive={pathname === "/call-agent"}
-                    asChild
+                    tooltip="AI Workers"
+                    onClick={() => setAiWorkersOpen((o) => !o)}
+                    className="w-full"
                   >
-                    <Link href="/call-agent">
-                      <Phone className="size-4" />
-                      <span>Call Agent</span>
-                      <img src="/RingCentral_logo.png" alt="RingCentral" className="h-3.5 w-auto object-contain ml-auto" />
-                    </Link>
+                    <BotMessageSquare className="size-4" />
+                    <span>AI Workers</span>
+                    <ChevronDown
+                      className={`size-3.5 ml-auto transition-transform duration-200 ${aiWorkersOpen ? "" : "-rotate-90"}`}
+                    />
                   </SidebarMenuButton>
+
+                  {aiWorkersOpen && (
+                    <SidebarMenuSub>
+                      <SidebarMenuSubItem>
+                        <SidebarMenuSubButton
+                          asChild
+                          isActive={pathname === "/call-agent"}
+                        >
+                          <Link href="/call-agent">
+                            <Phone className="size-3" />
+                            <span className="text-xs">Call Agent</span>
+                          </Link>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                      <SidebarMenuSubItem>
+                        <SidebarMenuSubButton
+                          asChild
+                          isActive={pathname.startsWith("/lead-qualification")}
+                        >
+                          <Link href="/lead-qualification">
+                            <MessagesSquare className="size-3" />
+                            <span className="text-xs">Lead Qualifier</span>
+                          </Link>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                      <SidebarMenuSubItem>
+                        <SidebarMenuSubButton
+                          asChild
+                          isActive={pathname === "/research-agent"}
+                        >
+                          <Link href="/research-agent">
+                            <ScanSearch className="size-3" />
+                            <span className="text-xs">Research Agent</span>
+                          </Link>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                    </SidebarMenuSub>
+                  )}
                 </SidebarMenuItem>
-                <SidebarMenuItem>
-                  <SidebarMenuButton
-                    tooltip="Lead Qualification Agent"
-                    isActive={pathname.startsWith("/lead-qualification")}
-                    asChild
-                  >
-                    <Link href="/lead-qualification">
-                      <MessagesSquare className="size-4" />
-                      <span>Lead Qualification</span>
-                      <img src="/RingCentral_logo.png" alt="RingCentral" className="h-3.5 w-auto object-contain ml-auto" />
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-                <SidebarMenuItem>
-                  <SidebarMenuButton
-                    tooltip="Research Agent"
-                    isActive={pathname === "/research-agent"}
-                    asChild
-                  >
-                    <Link href="/research-agent">
-                      <ScanSearch className="size-4" />
-                      <span>Research Agent</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-                {/* Previously: Home, Main Page 1, Main Page 2, Items, Team, Settings – see git history to restore */}
+
               </SidebarMenu>
             </SidebarGroupContent>
           </SidebarGroup>
         </SidebarContent>
         <SidebarFooter>
+          {/* Connected integrations */}
+          <div className="px-3 py-2 border-t border-gray-100">
+            <p className="text-[10px] text-gray-400 uppercase tracking-wide mb-2">Connected</p>
+            <div className="flex flex-col gap-1.5">
+              <div className="flex items-center gap-2">
+                <span className="relative flex h-2 w-2 shrink-0">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
+                </span>
+                <img src="/AgencyZoom-removebg-preview.png" alt="AgencyZoom" className="h-3 w-auto object-contain" />
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="relative flex h-2 w-2 shrink-0">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
+                </span>
+                <img src="/RingCentral_logo.png" alt="RingCentral" className="h-3 w-auto object-contain" />
+              </div>
+            </div>
+          </div>
           <SidebarMenu>
             {/* User info section */}
             {userData && (
