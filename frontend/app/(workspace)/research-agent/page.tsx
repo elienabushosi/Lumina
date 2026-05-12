@@ -100,7 +100,7 @@ export default function ResearchAgentPage() {
 		};
 	}, [step, googleMapsViewPhase]);
 
-	const defaultAddress = "9808 Coolidge Dr. Mckinney,Tx 75070";
+	const defaultAddress = "9808 Coolidge Dr, McKinney, TX 75072";
 	const effectiveAddress = address || defaultAddress;
 	const analysisComplete = birdsStage === 2;
 	const zillowRedfinComplete = redfinStage === 2;
@@ -188,10 +188,9 @@ export default function ResearchAgentPage() {
 						<div className="flex justify-end gap-3">
 							<Input
 								type="text"
-								placeholder="Input address you want to research"
-								className="flex-1 h-10"
-								value={address}
-								onChange={(e) => setAddress(e.target.value)}
+								className="flex-1 h-10 bg-gray-50 text-[#37322F] cursor-default"
+								value={defaultAddress}
+								readOnly
 							/>
 							<Button
 								type="button"

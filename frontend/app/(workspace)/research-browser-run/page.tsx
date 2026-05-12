@@ -114,14 +114,14 @@ export default function ResearchBrowserRunPage() {
 								<Bot className="w-4 h-4 text-[#6c70ba]" />
 							</div>
 							<p className="text-sm font-medium text-[#37322F]">A browser agent takes over</p>
-							<p className="text-sm text-[#605A57]">Think of it like a digital assistant that opens the insurance forms and fills them in automatically — just like a person would, but without the manual effort.</p>
+							<p className="text-sm text-[#605A57]">Think of it like a digital assistant that opens the insurance forms and fills them in automatically, just like a person would, but without the manual effort.</p>
 						</div>
 						<div className="flex flex-col gap-2">
 							<div className="w-8 h-8 rounded-lg bg-[#6c70ba]/10 flex items-center justify-center">
 								<ClipboardCheck className="w-4 h-4 text-[#6c70ba]" />
 							</div>
 							<p className="text-sm font-medium text-[#37322F]">No copy-pasting required</p>
-							<p className="text-sm text-[#605A57]">All the property details — roof type, square footage, floor finishes — are pulled from our research and entered directly into Alta and 360Value on your behalf.</p>
+							<p className="text-sm text-[#605A57]">All the property details like roof type, square footage, and floor finishes are pulled from our research and entered directly into Alta and 360Value on your behalf.</p>
 						</div>
 						<div className="flex flex-col gap-2">
 							<div className="w-8 h-8 rounded-lg bg-[#6c70ba]/10 flex items-center justify-center">

@@ -65,7 +65,10 @@ export default function LeadsPage() {
   return (
     <div className="p-6">
       <div className="mb-6">
-        <h2 className="text-xl font-semibold text-[#37322F]">Leads Pipeline</h2>
+        <div className="flex items-center justify-between">
+          <h2 className="text-xl font-semibold text-[#37322F]">Leads Pipeline</h2>
+          <img src="/AgencyZoom-removebg-preview.png" alt="AgencyZoom" className="h-7 object-contain" />
+        </div>
         <p className="text-sm text-gray-500 mt-1">{leads.length} total leads</p>
       </div>
 

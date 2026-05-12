@@ -38,6 +38,8 @@ import {
   Box,
   ScanSearch,
   ContactRound,
+  Phone,
+  MessagesSquare,
 } from "lucide-react";
 
 function SidebarHeaderContent({
@@ -58,7 +60,7 @@ function SidebarHeaderContent({
       {/* Company name - hidden when collapsed */}
       {!isCollapsed && (
         <div className="text-center">
-          <h2 className="text-lg font-semibold text-[#37322F]">
+          <h2 className="text-sm font-semibold text-[#37322F]">
             {organizationName || "Organization"}
           </h2>
         </div>
@@ -70,6 +72,12 @@ function SidebarHeaderContent({
 function getPageTitle(pathname: string): string {
   if (pathname === "/leads") {
     return "Leads";
+  }
+  if (pathname === "/call-agent") {
+    return "Call Agent";
+  }
+  if (pathname.startsWith("/lead-qualification")) {
+    return "Lead Qualification Agent";
   }
   if (pathname === "/research-agent") {
     return "Research Agent";
@@ -204,6 +212,33 @@ export default function WorkspaceLayout({
                     <Link href="/leads">
                       <ContactRound className="size-4" />
                       <span>Leads</span>
+                      <img src="/AgencyZoom-removebg-preview.png" alt="AgencyZoom" className="h-3.5 w-auto object-contain ml-auto" />
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+                <SidebarMenuItem>
+                  <SidebarMenuButton
+                    tooltip="Call Agent"
+                    isActive={pathname === "/call-agent"}
+                    asChild
+                  >
+                    <Link href="/call-agent">
+                      <Phone className="size-4" />
+                      <span>Call Agent</span>
+                      <img src="/RingCentral_logo.png" alt="RingCentral" className="h-3.5 w-auto object-contain ml-auto" />
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+                <SidebarMenuItem>
+                  <SidebarMenuButton
+                    tooltip="Lead Qualification Agent"
+                    isActive={pathname.startsWith("/lead-qualification")}
+                    asChild
+                  >
+                    <Link href="/lead-qualification">
+                      <MessagesSquare className="size-4" />
+                      <span>Lead Qualification</span>
+                      <img src="/RingCentral_logo.png" alt="RingCentral" className="h-3.5 w-auto object-contain ml-auto" />
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
