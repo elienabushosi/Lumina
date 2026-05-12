@@ -104,9 +104,19 @@ export default function ResearchBrowserRunPage() {
 
 	return (
 		<div className="p-8">
+			<style>{`
+				@keyframes fadeSlideIn {
+					from { opacity: 0; transform: translateY(18px); }
+					to   { opacity: 1; transform: translateY(0); }
+				}
+				.animate-section {
+					opacity: 0;
+					animation: fadeSlideIn 0.8s ease forwards;
+				}
+			`}</style>
 			<div className="max-w-4xl mx-auto space-y-6">
 				{/* How this works */}
-				<div className="bg-[#F9FAFB] border border-[rgba(55,50,47,0.10)] rounded-xl p-5 space-y-3">
+				<div className="animate-section bg-[#F9FAFB] border border-[rgba(55,50,47,0.10)] rounded-xl p-5 space-y-3" style={{ animationDelay: "0ms" }}>
 					<p className="text-xs font-semibold text-gray-400 uppercase tracking-wide">How this works</p>
 					<div className="grid grid-cols-3 gap-4">
 						<div className="flex flex-col gap-2">
@@ -133,7 +143,7 @@ export default function ResearchBrowserRunPage() {
 					</div>
 				</div>
 				{/* Browser-style window: red, yellow, green dots + rounded frame */}
-				<div className="flex justify-center">
+				<div className="animate-section flex justify-center" style={{ animationDelay: "120ms" }}>
 					<div className="w-full max-w-3xl rounded-xl border-2 border-[rgba(55,50,47,0.15)] overflow-hidden bg-[#e8e8e8] shadow-lg">
 						{/* Title bar with traffic light buttons (top left) */}
 						<div className="flex items-center justify-between gap-2 px-3 py-2.5 border-b border-[rgba(55,50,47,0.12)] bg-[#e5e5e5]">
@@ -168,7 +178,7 @@ export default function ResearchBrowserRunPage() {
 				</div>
 
 				{/* Note below browser */}
-				<div className="flex justify-center">
+				<div className="animate-section flex justify-center" style={{ animationDelay: "220ms" }}>
 					<p className="text-sm text-[#6C70BA] flex items-center gap-2">
 						<span aria-hidden="true">🥁</span>
 						<span>
@@ -179,7 +189,7 @@ export default function ResearchBrowserRunPage() {
 				</div>
 
 				{/* Progress list – aligned to video timestamps */}
-				<div className="space-y-4">
+				<div className="animate-section space-y-4" style={{ animationDelay: "320ms" }}>
 					<ProgressSection
 						complete={step1Complete}
 						label="Updating Alta Home features section"
@@ -237,14 +247,8 @@ export default function ResearchBrowserRunPage() {
 				</div>
 
 				{/* Action buttons */}
-				<div className="pt-4 flex flex-wrap items-center gap-3">
-					<Button
-						type="button"
-						onClick={() => router.push("/research-agent")}
-					>
-						Research a new address
-					</Button>
-					{videoEnded && (
+				{videoEnded && (
+					<div className="pt-4 flex flex-wrap items-center gap-3">
 						<Button
 							type="button"
 							variant="outline"
@@ -253,8 +257,8 @@ export default function ResearchBrowserRunPage() {
 						>
 							Playback Form Filling
 						</Button>
-					)}
-				</div>
+					</div>
+				)}
 			</div>
 		</div>
 	);

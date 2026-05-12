@@ -85,7 +85,17 @@ export default function CallAgentPage() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <style>{`
+        @keyframes fadeSlideIn {
+          from { opacity: 0; transform: translateY(18px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        .animate-section {
+          opacity: 0;
+          animation: fadeSlideIn 0.8s ease forwards;
+        }
+      `}</style>
+      <div className="animate-section mb-6" style={{ animationDelay: "0ms" }}>
         <div className="flex items-center justify-between">
           <div className="flex items-baseline gap-3">
             <h2 className="text-xl font-semibold text-[#37322F]">Call Agent</h2>
@@ -97,7 +107,7 @@ export default function CallAgentPage() {
       </div>
 
       {/* Summary pills */}
-      <div className="flex gap-3 mb-6">
+      <div className="animate-section flex gap-3 mb-6" style={{ animationDelay: "100ms" }}>
         <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-green-50 border border-green-200 text-sm text-green-700">
           <Phone className="size-3.5" />
           <span>{completed} completed</span>
@@ -121,7 +131,7 @@ export default function CallAgentPage() {
       `}</style>
 
       {/* Table */}
-      <div className="rounded-xl border border-gray-200 overflow-hidden bg-white shadow-sm">
+      <div className="animate-section rounded-xl border border-gray-200 overflow-hidden bg-white shadow-sm" style={{ animationDelay: "200ms" }}>
         <table className="w-full text-sm">
           <thead>
             <tr className="bg-gray-50 border-b border-gray-200">

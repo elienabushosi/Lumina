@@ -64,7 +64,7 @@ const DEMO_IDS = [1, 3];
 export default function LeadsPage() {
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="animate-section mb-6" style={{ animationDelay: "0ms" }}>
         <div className="flex items-center justify-between">
           <div className="flex items-baseline gap-3">
             <h2 className="text-xl font-semibold text-[#37322F]">Leads</h2>
@@ -76,7 +76,7 @@ export default function LeadsPage() {
       </div>
 
       {/* Insurance tabs */}
-      <div className="flex gap-1 border-b border-gray-200 mb-6">
+      <div className="animate-section flex gap-1 border-b border-gray-200 mb-6" style={{ animationDelay: "100ms" }}>
         <div className="px-4 py-2 text-sm font-medium text-[#37322F] border-b-2 border-[#37322F] cursor-pointer">
           Home
         </div>
@@ -94,13 +94,21 @@ export default function LeadsPage() {
           50% { box-shadow: 0 0 18px 6px rgba(139, 92, 246, 0.75); }
         }
         .demo-glow { animation: demo-glow 2s ease-in-out infinite; }
+        @keyframes fadeSlideIn {
+          from { opacity: 0; transform: translateY(18px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        .animate-section {
+          opacity: 0;
+          animation: fadeSlideIn 0.8s ease forwards;
+        }
       `}</style>
 
       <div className="grid grid-cols-4 gap-4">
-        {columns.map((col) => {
+        {columns.map((col, colIdx) => {
           const colLeads = leads.filter((l) => l.status === col.key);
           return (
-            <div key={col.key} className="flex flex-col gap-3">
+            <div key={col.key} className="animate-section flex flex-col gap-3" style={{ animationDelay: `${200 + colIdx * 100}ms` }}>
               <div className={`flex items-center justify-between px-3 py-2 rounded-lg border ${col.color}`}>
                 <span className="font-semibold text-sm">{col.label}</span>
                 <span className="text-xs font-medium rounded-full bg-white/60 px-2 py-0.5">

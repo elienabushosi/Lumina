@@ -141,14 +141,32 @@ export default function LeadDetailPage() {
 
   return (
     <div className="p-6">
+      <style>{`
+        @keyframes fadeSlideIn {
+          from { opacity: 0; transform: translateY(18px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        .animate-section {
+          opacity: 0;
+          animation: fadeSlideIn 0.8s ease forwards;
+        }
+      `}</style>
+
       {/* Back */}
-      <Link href="/leads" className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-[#37322F] mb-6">
+      <Link
+        href="/leads"
+        className="animate-section inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-[#37322F] mb-6"
+        style={{ animationDelay: "0ms" }}
+      >
         <ArrowLeft className="size-4" />
         Back to Leads
       </Link>
 
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
+      <div
+        className="animate-section flex items-center justify-between mb-6"
+        style={{ animationDelay: "100ms" }}
+      >
         <h2 className="text-2xl font-semibold text-[#37322F]">{lead.name}</h2>
         <div className="flex flex-col items-end gap-1.5">
           <style>{`
@@ -189,7 +207,7 @@ export default function LeadDetailPage() {
       <div className="flex flex-col gap-6">
 
         {/* AI Confirmation Conversation */}
-        <section className="bg-white border border-gray-200 rounded-xl p-5">
+        <section className="animate-section bg-white border border-gray-200 rounded-xl p-5" style={{ animationDelay: "200ms" }}>
           <button
             onClick={() => setConvoOpen(!convoOpen)}
             className="flex items-center justify-between w-full mb-4 group"
@@ -293,7 +311,7 @@ export default function LeadDetailPage() {
         </section>
 
         {/* Property Images — full width */}
-        <section className="bg-white border border-gray-200 rounded-xl overflow-hidden">
+        <section className="animate-section bg-white border border-gray-200 rounded-xl overflow-hidden" style={{ animationDelay: "320ms" }}>
           <div className="px-5 pt-5 pb-3 flex items-center justify-between">
             <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Property Images</h3>
             <div className="flex items-center gap-3">
@@ -338,7 +356,7 @@ export default function LeadDetailPage() {
         </section>
 
         {/* Two-column grid for remaining sections */}
-        <div className="grid grid-cols-2 gap-6">
+        <div className="animate-section grid grid-cols-2 gap-6" style={{ animationDelay: "440ms" }}>
 
           {/* Property Details */}
           <section className="bg-white border border-gray-200 rounded-xl p-5">

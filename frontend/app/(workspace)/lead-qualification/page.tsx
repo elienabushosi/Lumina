@@ -450,13 +450,23 @@ export default function LeadQualificationPage() {
 
   return (
     <div className="flex flex-col h-[calc(100vh-64px)]">
+      <style>{`
+        @keyframes fadeSlideIn {
+          from { opacity: 0; transform: translateY(18px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        .animate-section {
+          opacity: 0;
+          animation: fadeSlideIn 0.8s ease forwards;
+        }
+      `}</style>
       {/* Page heading */}
-      <div className="flex items-center gap-3 px-6 pt-4 pb-2 bg-white shrink-0">
+      <div className="animate-section flex items-center gap-3 px-6 pt-4 pb-2 bg-white shrink-0" style={{ animationDelay: "0ms" }}>
         <h2 className="text-xl font-semibold text-[#37322F]">Lead Qualifier</h2>
         <p className="text-xs text-gray-400"><span className="font-medium text-gray-500">How it works:</span> Ensures all information pulled regarding a lead is accurate using real-time back-and-forth conversation.</p>
       </div>
       {/* Top summary bar */}
-      <div className="flex items-center justify-between px-6 py-3 border-b border-gray-200 bg-white shrink-0">
+      <div className="animate-section flex items-center justify-between px-6 py-3 border-b border-gray-200 bg-white shrink-0" style={{ animationDelay: "100ms" }}>
         <div className="flex gap-3">
           <span className="flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full bg-green-50 text-green-700 border border-green-200">
             <CheckCircle className="size-3" /> {qualified} Qualified
@@ -478,7 +488,7 @@ export default function LeadQualificationPage() {
       </div>
 
       {/* Two-panel layout */}
-      <div className="flex flex-1 overflow-hidden">
+      <div className="animate-section flex flex-1 overflow-hidden" style={{ animationDelay: "200ms" }}>
 
         {/* Left: conversation list */}
         <div className="w-80 shrink-0 border-r border-gray-200 bg-white overflow-y-auto">
